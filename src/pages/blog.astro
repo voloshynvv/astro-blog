@@ -1,0 +1,32 @@
+---
+import { getCollection } from 'astro:content';
+import Layout from '../layouts/Layout.astro';
+import { Image } from 'astro:assets';
+
+const posts = await getCollection('blog');
+---
+
+<Layout>
+  <div>
+    {
+      posts.map((post) => (
+        <article>
+          {post.data.image && <Image src={post.data.image} alt="" />}
+
+          <div>
+            <a href="#">{post.data.category}</a>
+
+            <p>
+              <time datetime="">5</time> min read
+            </p>
+          </div>
+
+          <h3>{post.data.title}</h3>
+          <p>{post.data.description}</p>
+
+          <a href="#">Read more</a>
+        </article>
+      ))
+    }
+  </div>
+</Layout>
