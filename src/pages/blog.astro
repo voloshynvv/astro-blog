@@ -3,11 +3,14 @@ import { getCollection } from 'astro:content';
 import { Image } from 'astro:assets';
 
 import Layout from '@/layouts/Layout.astro';
+import Hero from '@/components/Hero.astro';
 
 const posts = await getCollection('blog');
 ---
 
 <Layout>
+  <Hero />
+
   <div class="container">
     <div class="grid grid-cols-3 gap-8">
       {
