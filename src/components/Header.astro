@@ -1,0 +1,31 @@
+---
+import { headerNavigation } from '@/config';
+
+import SiteLogo from '@/components/SiteLogo.astro';
+
+const { pathname } = Astro.url;
+---
+
+<header class="fixed left-0 top-0 w-full bg-white py-7">
+  <div class="container flex items-center justify-between">
+    <SiteLogo />
+
+    <nav aria-label="Primary">
+      <ul class="flex gap-14">
+        {
+          headerNavigation.map((navItem) => (
+            <li class="inline-flex items-center gap-1">
+              <a
+                class="transition-colors hover:text-primary aria-current:text-primary"
+                href={navItem.href}
+                aria-current={pathname === navItem.href ? 'page' : null}
+              >
+                {navItem.label}
+              </a>
+            </li>
+          ))
+        }
+      </ul>
+    </nav>
+  </div>
+</header>

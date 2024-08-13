@@ -3,6 +3,25 @@ export const SITE = {
   description: '',
 };
 
+export const headerNavigation = [
+  {
+    href: '/concept',
+    label: 'Concept',
+  },
+  {
+    href: '/our-story',
+    label: 'Our story',
+  },
+  {
+    href: '/blog',
+    label: 'Blog',
+  },
+  {
+    href: '/contact',
+    label: 'Contact',
+  },
+];
+
 export const footerNavigation = [
   {
     href: '/concept',
@@ -25,8 +44,6 @@ export const footerNavigation = [
     label: 'Contact us',
   },
 ];
-
-const headerNavigation = [];
 
 export const socialMedia = [
   {
