@@ -1,36 +1,39 @@
 ---
 import { getCollection } from 'astro:content';
-import Layout from '../layouts/Layout.astro';
 import { Image } from 'astro:assets';
+
+import Layout from '@/layouts/Layout.astro';
 
 const posts = await getCollection('blog');
 ---
 
 <Layout>
-  <div class="grid grid-cols-3 gap-8">
-    {
-      posts.map((post) => (
-        <article class="bg-white">
-          {post.data.image && <Image src={post.data.image} alt="" />}
+  <div class="container">
+    <div class="grid grid-cols-3 gap-8">
+      {
+        posts.map((post) => (
+          <article class="bg-white">
+            {post.data.image && <Image src={post.data.image} alt="" />}
 
-          <div class="p-6">
-            <div class="flex items-center gap-4">
-              <a href="#" class="px-2 py-1 bg-black text-white">
-                {post.data.category}
-              </a>
+            <div class="p-6">
+              <div class="flex items-center gap-4">
+                <a href="#" class="px-2 py-1 bg-black text-white">
+                  {post.data.category}
+                </a>
 
-              <p>
-                <time datetime="">5</time> min read
-              </p>
+                <p>
+                  <time datetime="">5</time> min read
+                </p>
+              </div>
+
+              <h3>{post.data.title}</h3>
+              <p>{post.data.description}</p>
+
+              <a href="#">Read more</a>
             </div>
-
-            <h3>{post.data.title}</h3>
-            <p>{post.data.description}</p>
-
-            <a href="#">Read more</a>
-          </div>
-        </article>
-      ))
-    }
+          </article>
+        ))
+      }
+    </div>
   </div>
 </Layout>

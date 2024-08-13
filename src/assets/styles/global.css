@@ -1,0 +1,33 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  @font-face {
+    font-family: 'Apercu';
+    src: url('/fonts/ApercuPro-Bold.woff2') format('woff2'), url('/fonts/ApercuPro-Bold.woff') format('woff'),
+      url('/fonts/ApercuPro-Bold.ttf') format('truetype');
+    font-weight: 700;
+    font-style: normal;
+  }
+
+  @font-face {
+    font-family: 'Apercu';
+    src: url('/fonts/ApercuPro-Medium.woff2') format('woff2'), url('/fonts/ApercuPro-Medium.woff') format('woff'),
+      url('/fonts/ApercuPro-Medium.ttf') format('truetype');
+    font-weight: 500;
+    font-style: normal;
+  }
+
+  @font-face {
+    font-family: 'Apercu';
+    src: url('/fonts/ApercuPro.woff2') format('woff2'), url('/fonts/ApercuPro.woff') format('woff'),
+      url('/fonts/ApercuPro.ttf') format('truetype');
+    font-weight: 400;
+    font-style: normal;
+  }
+
+  html {
+    font-family: 'Apercu', system-ui, sans-serif;
+  }
+}
