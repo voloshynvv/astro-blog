@@ -2,6 +2,8 @@
 import '@/assets/styles/global.css';
 import { SITE } from '@/config';
 
+import Footer from '@/components/Footer.astro';
+
 interface Props {
   title?: string;
   description?: string;
@@ -21,7 +23,11 @@ const { title = SITE.title, description = SITE.description } = Astro.props;
     <title>{title}</title>
     <meta name="description" content={description} />
   </head>
-  <body>
-    <slot />
+  <body class="flex min-h-svh flex-col bg-background text-foreground">
+    <main class="flex-1">
+      <slot />
+    </main>
+
+    <Footer />
   </body>
 </html>

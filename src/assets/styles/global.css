@@ -27,6 +27,16 @@
     font-style: normal;
   }
 
+  :root {
+    /* Body */
+    --background: 210 25% 98%;
+    --foreground: 0 0% 7%;
+
+    /* Primary Button */
+    --primary: 238 100% 63%;
+    --primary-foreground: 0 0% 100%;
+  }
+
   html {
     font-family: 'Apercu', system-ui, sans-serif;
   }

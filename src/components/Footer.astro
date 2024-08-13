@@ -1,0 +1,46 @@
+---
+import { footerNavigation, socialMedia } from '@/config';
+import { Icon } from 'astro-icon/components';
+
+import SiteLogo from '@/components/SiteLogo.astro';
+
+const { pathname } = Astro.url;
+---
+
+<footer class="bg-white">
+  <div class="container flex flex-col items-center justify-between gap-10 py-10 lg:flex-row">
+    <div class="lg:min-w-40">
+      <SiteLogo />
+    </div>
+
+    <nav aria-label="Footer" class="flex-1">
+      <ul class="flex flex-wrap justify-center gap-4 text-center lg:gap-8">
+        {
+          footerNavigation.map((navItem) => (
+            <li>
+              <a
+                class="transition-colors hover:text-primary aria-current:text-primary"
+                href={navItem.href}
+                aria-current={pathname === navItem.href ? 'page' : null}
+              >
+                {navItem.label}
+              </a>
+            </li>
+          ))
+        }
+      </ul>
+    </nav>
+
+    <ul class="flex items-center justify-end gap-3 lg:min-w-40" aria-label="Social media">
+      {
+        socialMedia.map((social) => (
+          <li>
+            <a href={social.href} target="_blank" aria-label={`${social.ariaLabel} (opens in new tab)`}>
+              <Icon class="transition-colors hover:text-primary" name={social.icon} width={24} height={24} />
+            </a>
+          </li>
+        ))
+      }
+    </ul>
+  </div>
+</footer>

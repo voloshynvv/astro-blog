@@ -10,6 +10,15 @@ export default {
         },
         padding: '1rem',
       },
+      aria: {
+        current: 'current="page"',
+      },
+      colors: {
+        background: 'hsl(var(--background))',
+        foreground: 'hsl(var(--foreground))',
+        primary: 'hsl(var(--primary))',
+        'primary-foreground': 'hsl(var(--primary-foreground))',
+      },
     },
   },
   plugins: [],
