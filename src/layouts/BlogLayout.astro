@@ -1,11 +1,9 @@
 ---
 import { getCollection } from 'astro:content';
-import { Icon } from 'astro-icon/components';
 import { buttonVariants } from '@/components/ui/Button';
 
 import Layout from '@/layouts/Layout.astro';
 import CategoriesList from '@/components/CategoriesList.astro';
-import { Image } from 'astro:assets';
 import Avatar from '@/components/ui/Avatar.astro';
 
 const [categories, authors] = await Promise.all([getCollection('categories'), getCollection('authors')]);
