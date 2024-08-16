@@ -1,23 +1,69 @@
 ---
-import Layout from '@/layouts/Layout.astro';
 import { getCollection } from 'astro:content';
+import { buttonVariants } from '@/components/ui/Button';
 
-const posts = await getCollection('blog');
+import Layout from '@/layouts/Layout.astro';
+import CategoriesList from '@/components/CategoriesList.astro';
+
+const categories = await getCollection('categories');
+const authors = await getCollection('authors');
 ---
 
 <Layout>
   <div class="container grid grid-cols-[1fr_2fr_1fr] gap-12 py-4">
-    <aside class="space-y-10">
+    <div class="sticky left-0 top-20 h-fit space-y-6">
       <section class="rounded border p-4">
-        <h1 class="mb-2 font-bold">Blog</h1>
+        <h1 class="mb-2 text-lg font-bold uppercase">Blog</h1>
         <p class="text-slate-600">Posts, articles, and tutorials about web development.</p>
       </section>
-    </aside>
+
+      <section class="space-y-2 rounded border p-4" aria-labelledby="become-an-author-heading">
+        <h2 class="mb-2 text-lg font-bold uppercase" id="become-an-author-heading">Become an author</h2>
+
+        <p class="text-slate-600">Do you want to contribute by writing guest posts on this blog?</p>
+        <p class="text-slate-600">Please contact us and send us a resume of previous articles that you have written.</p>
+
+        <a class={buttonVariants({ class: 'w-full' })} href="/contact">Get in touch</a>
+      </section>
+
+      <section class="space-y-2 rounded border p-4" aria-labelledby="suggest-heading">
+        <h2 class="mb-2 text-lg font-bold uppercase" id="suggest-heading">Suggest a post idea</h2>
+
+        <p class="text-slate-600">Would you like to suggest an idea for a new post?</p>
+
+        <a class={buttonVariants({ class: 'w-full' })} href="/contact">Suggest</a>
+      </section>
+    </div>
 
     <div>
       <slot />
     </div>
 
-    <aside></aside>
+    <aside class="sticky top-20 h-fit space-y-6">
+      <section class="space-y-2 rounded border p-4" aria-labelledby="categories-heading">
+        <h2 class="mb-2 text-lg font-bold uppercase" id="recommended-categories-heading">Recommended Categories</h2>
+
+        <CategoriesList categories={categories} />
+      </section>
+
+      <section class="space-y-2 rounded border p-4" aria-labelledby="authors-heading">
+        <h2 class="mb-2 text-lg font-bold uppercase" id="authors-heading">Community authors</h2>
+
+        <ul class="space-y-4">
+          {
+            authors.map((author) => (
+              <li>
+                <a href={`/author/${author.id}`} class="group flex gap-2">
+                  <div>
+                    <h3 class="group-hover:underline">{author.data.name}</h3>
+                    <p class="line-clamp-2 text-sm text-slate-600">{author.data.description}</p>
+                  </div>
+                </a>
+              </li>
+            ))
+          }
+        </ul>
+      </section>
+    </aside>
   </div>
 </Layout>

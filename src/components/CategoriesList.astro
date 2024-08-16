@@ -1,0 +1,23 @@
+---
+import type { CollectionEntry } from 'astro:content';
+import { buttonVariants } from '@/components/ui/Button';
+
+interface Props {
+  categories: CollectionEntry<'categories'>[];
+  class?: string;
+}
+
+const { categories, class: className } = Astro.props;
+---
+
+<ul class:list={['flex gap-2', className]}>
+  {
+    categories.map((category) => (
+      <li>
+        <a href={`/category/${category.id}`} class={buttonVariants({ size: 'sm' })}>
+          #{category.data.name}
+        </a>
+      </li>
+    ))
+  }
+</ul>
