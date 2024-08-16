@@ -1,4 +1,5 @@
 {
   "name": "James Carter",
-  "description": "Backend developer with a focus on Python and Django. I share advanced tips on server-side development and databases."
+  "description": "Backend developer with a focus on Python and Django. I share advanced tips on server-side development and databases.",
+  "profileImage": "./images/james-carter.jpg"
 }

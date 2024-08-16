@@ -3,6 +3,9 @@ import { getEntries, getEntry, type CollectionEntry } from 'astro:content';
 import { buttonVariants } from '@/components/ui/Button';
 import { Icon } from 'astro-icon/components';
 
+import CategoriesList from '@/components/CategoriesList.astro';
+import Avatar from '@/components/ui/Avatar.astro';
+
 interface Props {
   post: CollectionEntry<'blog'>;
 }
@@ -13,17 +16,7 @@ const [categories, author] = await Promise.all([getEntries(post.data.categories)
 
 <article class="border-b py-6">
   <div class="mb-3 flex flex-wrap items-center justify-between gap-2">
-    <ul class="flex gap-2">
-      {
-        categories.map((category) => (
-          <li>
-            <a href={`/category/${category.id}`} class={buttonVariants({ size: 'sm' })}>
-              #{category.data.name}
-            </a>
-          </li>
-        ))
-      }
-    </ul>
+    <CategoriesList categories={categories} aria-label="Categories" />
 
     <p class="text-sm text-slate-600">
       Published
@@ -44,12 +37,14 @@ const [categories, author] = await Promise.all([getEntries(post.data.categories)
 
   <div class="flex flex-wrap items-center justify-between gap-2">
     <a href={`/author/${author.id}`} class="flex items-center gap-2 font-medium">
+      <Avatar src={author.data.profileImage} alt={author.data.name} />
+
       {author.data.name}
     </a>
 
     <a href={`/blog/${post.slug}`} class={buttonVariants({ variant: 'link', size: 'sm' })}>
       read more
-      <Icon name="chevron-down" class="-rotate-90" />
+      <Icon name="chevron" class="-rotate-90" />
     </a>
   </div>
 </article>
