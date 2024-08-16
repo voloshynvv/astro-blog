@@ -6,17 +6,17 @@ import SiteLogo from '@/components/SiteLogo.astro';
 const { pathname } = Astro.url;
 ---
 
-<header class="fixed left-0 top-0 w-full bg-white">
-  <div class="container flex min-h-14 items-center justify-between lg:min-h-20">
+<header class="fixed left-0 top-0 w-full border-b bg-white">
+  <div class="container flex min-h-16 items-center justify-between">
     <SiteLogo />
 
     <nav aria-label="Primary">
-      <ul class="flex gap-14">
+      <ul class="flex items-center gap-4 text-sm">
         {
           headerNavigation.map((navItem) => (
-            <li class="inline-flex items-center gap-1">
+            <li>
               <a
-                class="transition-colors hover:text-primary aria-current:text-primary"
+                class="font-medium transition-colors aria-current:text-primary"
                 href={navItem.href}
                 aria-current={pathname === navItem.href ? 'page' : null}
               >

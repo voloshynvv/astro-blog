@@ -1,0 +1,48 @@
+---
+import { getCollection } from 'astro:content';
+import { getUniqueCategories } from '@/utils/blog';
+
+import Layout from '@/layouts/Layout.astro';
+import Hero from '@/components/Hero.astro';
+import Post from '@/components/Post.astro';
+import { buttonVariants } from '@/components/ui/button';
+
+const posts = await getCollection('blog');
+const categories = getUniqueCategories(posts);
+---
+
+<Layout>
+  <Hero title="Welcome, world" description="Read. Deepen your understanding." />
+
+  <div class="flex border-b border-t">
+    <aside class="border-r">
+      <section class="border-b p-5">
+        <h2 class="mb-2 text-lg font-bold">Popular posts</h2>
+      </section>
+
+      {
+        categories.length > 0 && (
+          <section class="border-b p-5">
+            <h2 class="mb-2 text-lg font-bold">Categories</h2>
+
+            <ul class="flex items-center gap-2">
+              {categories.map((category) => (
+                <li>
+                  <a href={`/category/${category.slug}`} class={buttonVariants({ size: 'sm', variant: 'outline' })}>
+                    {category.name}
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </section>
+        )
+      }
+    </aside>
+
+    <div class="flex flex-1 flex-col items-center p-20">
+      <div class="max-w-3xl">
+        {posts.map((post) => <Post post={post} />)}
+      </div>
+    </div>
+  </div>
+</Layout>

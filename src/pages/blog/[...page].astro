@@ -1,0 +1,28 @@
+---
+import { getCollection } from 'astro:content';
+import type { GetStaticPaths } from 'astro';
+
+import BlogLayout from '@/layouts/BlogLayout.astro';
+import Post from '@/components/Post.astro';
+import { Button } from '@/components/ui/Button';
+
+export const getStaticPaths = (async ({ paginate }) => {
+  const posts = await getCollection('blog');
+
+  return paginate(posts, { pageSize: 1 });
+}) satisfies GetStaticPaths;
+
+const { page } = Astro.props;
+console.log(page);
+---
+
+<BlogLayout>
+  <p class="border-b border-t py-3 font-medium">{page.total} posts in total</p>
+
+  {page.data.map((p) => <Post post={p} />)}
+
+  <div class="flex">
+    {page.url.prev ? <a href={page.url.prev}>Previous</a> : null}
+    {page.url.next ? <a href={page.url.next}>Next</a> : null}
+  </div>
+</BlogLayout>

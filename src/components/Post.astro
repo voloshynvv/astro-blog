@@ -1,0 +1,55 @@
+---
+import { getEntries, getEntry, type CollectionEntry } from 'astro:content';
+import { buttonVariants } from '@/components/ui/Button';
+import { Icon } from 'astro-icon/components';
+
+interface Props {
+  post: CollectionEntry<'blog'>;
+}
+
+const { post } = Astro.props;
+const [categories, author] = await Promise.all([getEntries(post.data.categories), getEntry(post.data.author)]);
+---
+
+<article class="border-b py-6">
+  <div class="mb-3 flex flex-wrap items-center justify-between gap-2">
+    <ul class="flex gap-2">
+      {
+        categories.map((category) => (
+          <li>
+            <a href={`/category/${category.id}`} class={buttonVariants({ size: 'sm' })}>
+              #{category.data.name}
+            </a>
+          </li>
+        ))
+      }
+    </ul>
+
+    <p class="text-sm text-slate-600">
+      Published
+
+      <time datetime={post.data.publishDate?.toISOString().slice(0, 10)}>
+        {new Intl.DateTimeFormat('en-US').format(post.data.publishDate)}
+      </time>
+    </p>
+  </div>
+
+  <a href={`/blog/${post.slug}`} class="mb-2 inline-block text-2xl font-bold hover:underline">
+    <h2>{post.data.title}</h2>
+  </a>
+
+  <p class="mb-5 text-slate-600">
+    {post.data.description}
+  </p>
+
+  <div class="flex flex-wrap items-center justify-between gap-2">
+    <a href={`/author/${author.id}`} class="flex items-center gap-2 font-medium">
+      {author.data.name}
+    </a>
+
+    <a href={`/blog/${post.slug}`} class={buttonVariants({ variant: 'link', size: 'sm' })}>
+      read more
+      <Icon name="chevron-down" class="-rotate-90" />
+    </a>
+  </div>
+</article>

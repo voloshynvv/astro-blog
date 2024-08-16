@@ -14,7 +14,7 @@ const { title = SITE.title, description = SITE.description } = Astro.props;
 ---
 
 <!doctype html>
-<html lang="en">
+<html lang="en" class="">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width" />
@@ -24,10 +24,10 @@ const { title = SITE.title, description = SITE.description } = Astro.props;
     <title>{title}</title>
     <meta name="description" content={description} />
   </head>
-  <body class="flex min-h-svh flex-col bg-background text-foreground">
+  <body class="flex min-h-svh flex-col">
     <Header />
 
-    <main class="flex-1 pt-14 md:pt-20">
+    <main class="flex-1 pt-14 md:pt-16">
       <slot />
     </main>
 

@@ -5,12 +5,8 @@ export const SITE = {
 
 export const headerNavigation = [
   {
-    href: '/concept',
-    label: 'Concept',
-  },
-  {
-    href: '/our-story',
-    label: 'Our story',
+    href: '/about',
+    label: 'About',
   },
   {
     href: '/blog',
