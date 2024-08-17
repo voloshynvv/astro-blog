@@ -25,14 +25,6 @@ const [categories, authors] = await Promise.all([getCollection('categories'), ge
 
         <a class={buttonVariants({ class: 'w-full' })} href="/contact">Get in touch</a>
       </section>
-
-      <section class="space-y-2 rounded border p-4" aria-labelledby="suggest-heading">
-        <h2 class="mb-2 text-lg font-bold uppercase" id="suggest-heading">Suggest a post idea</h2>
-
-        <p class="text-slate-600">Would you like to suggest an idea for a new post?</p>
-
-        <a class={buttonVariants({ class: 'w-full' })} href="/contact">Suggest</a>
-      </section>
     </div>
 
     <div>

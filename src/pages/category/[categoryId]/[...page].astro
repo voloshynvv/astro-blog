@@ -1,0 +1,33 @@
+---
+import type { GetStaticPaths } from 'astro';
+import { getCollection } from 'astro:content';
+
+import BlogLayout from '@/layouts/BlogLayout.astro';
+import Post from '@/components/Post.astro';
+
+export const getStaticPaths = (async ({ paginate }) => {
+  const [categories, posts] = await Promise.all([getCollection('categories'), getCollection('blog')]);
+
+  return categories.flatMap((category) => {
+    const filteredPosts = posts.filter((post) => post.data.categories.some((postCat) => postCat.id === category.id));
+
+    return paginate(filteredPosts, {
+      params: { categoryId: category.id },
+      pageSize: 1,
+    });
+  });
+}) satisfies GetStaticPaths;
+
+const { page } = Astro.props;
+---
+
+<BlogLayout>
+  <p class="border-b border-t py-3 font-medium">6 posts in total from</p>
+
+  {page.data.map((p) => <Post post={p} />)}
+
+  <div class="flex">
+    {page.url.prev ? <a href={page.url.prev}>Previous</a> : null}
+    {page.url.next ? <a href={page.url.next}>Next</a> : null}
+  </div>
+</BlogLayout>

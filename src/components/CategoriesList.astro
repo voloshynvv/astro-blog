@@ -8,10 +8,10 @@ interface Props extends HTMLAttributes<'ul'> {
   categories: CollectionEntry<'categories'>[];
 }
 
-const { categories, ...props } = Astro.props;
+const { categories, class: className, ...props } = Astro.props;
 ---
 
-<ul class={cn(['flex flex-wrap gap-2', props.class])} {...props}>
+<ul class={cn('flex flex-wrap gap-2', className)} {...props}>
   {
     categories.map((category) => (
       <li>

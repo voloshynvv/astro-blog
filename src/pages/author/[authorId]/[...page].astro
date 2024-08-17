@@ -6,13 +6,13 @@ import BlogLayout from '@/layouts/BlogLayout.astro';
 import Post from '@/components/Post.astro';
 
 export const getStaticPaths = (async ({ paginate }) => {
-  const [categories, posts] = await Promise.all([getCollection('categories'), getCollection('blog')]);
+  const [authors, posts] = await Promise.all([getCollection('authors'), getCollection('blog')]);
 
-  return categories.flatMap((category) => {
-    const filteredPosts = posts.filter((p) => p.data.categories.map((p) => p.id).includes(category.id));
+  return authors.flatMap((author) => {
+    const filteredPosts = posts.filter((post) => post.data.author.id === author.id);
 
     return paginate(filteredPosts, {
-      params: { slug: category.id },
+      params: { authorId: author.id },
       pageSize: 1,
     });
   });
@@ -25,4 +25,9 @@ const { page } = Astro.props;
   <p class="border-b border-t py-3 font-medium">6 posts in total from</p>
 
   {page.data.map((p) => <Post post={p} />)}
+
+  <div class="flex">
+    {page.url.prev ? <a href={page.url.prev}>Previous</a> : null}
+    {page.url.next ? <a href={page.url.next}>Next</a> : null}
+  </div>
 </BlogLayout>
