@@ -1,6 +1,7 @@
 ---
 import type { GetStaticPaths } from 'astro';
 import { getCollection } from 'astro:content';
+import { pluralize } from '@/utils/pluralize';
 
 import BlogLayout from '@/layouts/BlogLayout.astro';
 import Post from '@/components/Post.astro';
@@ -15,7 +16,7 @@ const { page } = Astro.props;
 ---
 
 <BlogLayout>
-  <p class="border-b border-t py-3 font-medium">{page.total} posts in total</p>
+  <p class="border-b border-t py-3 font-medium">{pluralize(page.total, 'post')} in total</p>
 
   {page.data.map((p) => <Post post={p} />)}
 
