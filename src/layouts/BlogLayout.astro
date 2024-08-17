@@ -28,6 +28,7 @@ const [categories, authors] = await Promise.all([getCollection('categories'), ge
     </div>
 
     <div>
+      <h2 class="sr-only">Articles</h2>
       <slot />
     </div>
 
@@ -57,7 +58,7 @@ const [categories, authors] = await Promise.all([getCollection('categories'), ge
               {authors.map((author) => (
                 <li>
                   <a href={`/author/${author.id}`} class="group flex gap-2">
-                    <Avatar src={author.data.profileImage} alt={author.data.name} />
+                    <Avatar src={author.data.profileImage} alt="" />
 
                     <div>
                       <h3 class="group-hover:underline">{author.data.name}</h3>

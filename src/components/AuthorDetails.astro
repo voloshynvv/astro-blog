@@ -11,7 +11,7 @@ interface Props {
 const { author } = Astro.props;
 ---
 
-<section class="rounded border p-4">
+<article class="rounded border p-4">
   <a href={`/author/${author.id}`} class="mb-2 flex items-center gap-2 hover:underline">
     <Avatar src={author.data.profileImage} alt="" />
     {author.data.name}
@@ -53,7 +53,7 @@ const { author } = Astro.props;
         <a
           href={author.data.website}
           target="_blank"
-          class="flex items-center gap-2 underline hover:no-underline"
+          class="inline-flex items-center gap-2 underline hover:no-underline"
           aria-label={`${author.data.name}'s website (opens in new tab)`}
         >
           <Icon name="globe" />
@@ -62,4 +62,4 @@ const { author } = Astro.props;
       </dd>
     </div>
   </dl>
-</section>
+</article>

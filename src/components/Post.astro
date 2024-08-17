@@ -37,7 +37,7 @@ const [categories, author] = await Promise.all([getEntries(post.data.categories)
 
   <div class="flex flex-wrap items-center justify-between gap-2">
     <a href={`/author/${author.id}`} class="flex items-center gap-2 hover:underline">
-      <Avatar src={author.data.profileImage} alt={author.data.name} />
+      <Avatar src={author.data.profileImage} alt="" />
 
       {author.data.name}
     </a>
