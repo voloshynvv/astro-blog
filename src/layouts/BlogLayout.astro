@@ -10,14 +10,14 @@ const [categories, authors] = await Promise.all([getCollection('categories'), ge
 ---
 
 <Layout>
-  <div class="container grid grid-cols-[1fr_2fr_1fr] gap-12 py-4">
-    <div class="sticky left-0 top-20 h-fit space-y-6">
+  <div class="container grid gap-12 py-4 lg:grid-cols-[1fr_2fr_1fr]">
+    <div class="left-0 top-20 h-fit space-y-6 lg:sticky">
       <section class="rounded border p-4">
         <h1 class="mb-2 text-lg font-bold uppercase">Blog</h1>
         <p class="text-slate-600">Posts, articles, and tutorials about web development.</p>
       </section>
 
-      <section class="space-y-2 rounded border p-4" aria-labelledby="become-an-author-heading">
+      <section class="hidden space-y-2 rounded border p-4 lg:block" aria-labelledby="become-an-author-heading">
         <h2 class="mb-2 text-lg font-bold uppercase" id="become-an-author-heading">Become an author</h2>
 
         <p class="text-slate-600">Do you want to contribute by writing guest posts on this blog?</p>
@@ -32,7 +32,7 @@ const [categories, authors] = await Promise.all([getCollection('categories'), ge
       <slot />
     </div>
 
-    <aside class="sticky top-20 h-fit space-y-6">
+    <aside class="top-20 h-fit space-y-6 lg:sticky">
       <slot name="right-sidebar" />
 
       {
