@@ -1,5 +1,8 @@
 {
   "name": "Michael Lee",
   "description": "Full-stack developer focused on React and Node.js.",
-  "profileImage": "./images/michael-lee.jpeg"
+  "profileImage": "./images/michael-lee.jpeg",
+  "location": "NYC",
+  "twitter": "https://twitter.com",
+  "website": "https://google.com"
 }

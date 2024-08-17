@@ -5,6 +5,7 @@ import { pluralize } from '@/utils/pluralize';
 
 import BlogLayout from '@/layouts/BlogLayout.astro';
 import Post from '@/components/Post.astro';
+import AuthorDetails from '@/components/AuthorDetails.astro';
 
 export const getStaticPaths = (async ({ paginate }) => {
   const [authors, posts] = await Promise.all([getCollection('authors'), getCollection('blog')]);
@@ -32,4 +33,6 @@ const { page, author } = Astro.props;
     {page.url.prev ? <a href={page.url.prev}>Previous</a> : null}
     {page.url.next ? <a href={page.url.next}>Next</a> : null}
   </div>
+
+  <AuthorDetails slot="right-sidebar" author={author} />
 </BlogLayout>

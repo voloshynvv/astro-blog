@@ -1,0 +1,65 @@
+---
+import type { CollectionEntry } from 'astro:content';
+import { Icon } from 'astro-icon/components';
+
+import Avatar from '@/components/ui/Avatar.astro';
+
+interface Props {
+  author: CollectionEntry<'authors'>;
+}
+
+const { author } = Astro.props;
+---
+
+<section class="rounded border p-4">
+  <a href={`/author/${author.id}`} class="mb-2 flex items-center gap-2 hover:underline">
+    <Avatar src={author.data.profileImage} alt="" />
+    {author.data.name}
+  </a>
+
+  <p class="mb-4 text-sm text-slate-600">
+    {author.data.description}
+  </p>
+
+  <dl class="space-y-4">
+    <div>
+      <dt class="mb-1 font-medium">Location</dt>
+
+      <dd class="flex items-center gap-2 text-sm text-slate-600">
+        <Icon name="location" />
+        {author.data.location}
+      </dd>
+    </div>
+
+    <div>
+      <dt class="mb-1 font-medium">Follow on twitter</dt>
+      <dd class="text-sm text-slate-600">
+        <a
+          href={author.data.twitter}
+          target="_blank"
+          class="inline-flex items-center gap-2 underline hover:no-underline"
+          aria-label={`${author.data.name}'s twitter (opens in new tab)`}
+        >
+          <Icon name="twitter" />
+
+          {author.data.twitter}
+        </a>
+      </dd>
+    </div>
+
+    <div>
+      <dt class="mb-1 font-medium">Website</dt>
+      <dd class="text-sm text-slate-600">
+        <a
+          href={author.data.website}
+          target="_blank"
+          class="flex items-center gap-2 underline hover:no-underline"
+          aria-label={`${author.data.name}'s website (opens in new tab)`}
+        >
+          <Icon name="globe" />
+          {author.data.website}
+        </a>
+      </dd>
+    </div>
+  </dl>
+</section>

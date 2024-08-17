@@ -28,7 +28,7 @@ const [categories, author] = await Promise.all([getEntries(post.data.categories)
   </div>
 
   <a href={`/blog/${post.slug}`} class="mb-2 inline-block text-2xl font-bold hover:underline">
-    <h2>{post.data.title}</h2>
+    <h3>{post.data.title}</h3>
   </a>
 
   <p class="mb-5 text-slate-600">
@@ -36,7 +36,7 @@ const [categories, author] = await Promise.all([getEntries(post.data.categories)
   </p>
 
   <div class="flex flex-wrap items-center justify-between gap-2">
-    <a href={`/author/${author.id}`} class="flex items-center gap-2 font-medium">
+    <a href={`/author/${author.id}`} class="flex items-center gap-2 hover:underline">
       <Avatar src={author.data.profileImage} alt={author.data.name} />
 
       {author.data.name}

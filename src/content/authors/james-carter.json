@@ -1,5 +1,8 @@
 {
   "name": "James Carter",
   "description": "Backend developer with a focus on Python and Django. I share advanced tips on server-side development and databases.",
-  "profileImage": "./images/james-carter.jpg"
+  "profileImage": "./images/james-carter.jpg",
+  "location": "Warsaw, Poland",
+  "twitter": "https://twitter.com",
+  "website": "https://google.com"
 }

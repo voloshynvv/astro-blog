@@ -1,5 +1,8 @@
 {
   "name": "Emily Johnson",
   "description": "Frontend developer who loves creating responsive designs and sharing web development tips through tutorials and articles.",
-  "profileImage": "./images/emily-johnson.jpeg"
+  "profileImage": "./images/emily-johnson.jpeg",
+  "location": "Paris, France",
+  "twitter": "https://twitter.com",
+  "website": "https://google.com"
 }
