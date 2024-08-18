@@ -1,8 +1,10 @@
 ---
 import { headerNavigation } from '@/config';
+import { buttonVariants } from '@/components/ui/Button';
 
 import SiteLogo from '@/components/SiteLogo.astro';
 import ThemeToggle from '@/components/ThemeToggle.astro';
+import { Icon } from 'astro-icon/components';
 
 const { pathname } = Astro.url;
 ---
@@ -13,7 +15,7 @@ const { pathname } = Astro.url;
 
     <div class="flex items-center gap-5">
       <nav aria-label="Primary">
-        <ul class="flex items-center gap-4 text-sm">
+        <ul class="flex gap-4 text-sm">
           {
             headerNavigation.map((navItem) => (
               <li>
@@ -30,9 +32,12 @@ const { pathname } = Astro.url;
         </ul>
       </nav>
 
-      <div class="flex items-center gap-2">
+      <div class="flex">
         <ThemeToggle />
-        <a href="">Search</a>
+
+        <a href="/search" class={buttonVariants({ size: 'icon', variant: 'ghost' })} aria-label="Search">
+          <Icon name="search" width={20} height={20} />
+        </a>
       </div>
     </div>
   </div>

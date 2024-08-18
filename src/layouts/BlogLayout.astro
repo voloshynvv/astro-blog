@@ -14,14 +14,16 @@ const [categories, authors] = await Promise.all([getCollection('categories'), ge
     <div class="left-0 top-20 h-fit space-y-6 lg:sticky">
       <section class="rounded border p-4">
         <h1 class="mb-2 text-lg font-bold uppercase">Blog</h1>
-        <p class="text-slate-600">Posts, articles, and tutorials about web development.</p>
+        <p class="text-muted-foreground">Posts, articles, and tutorials about web development.</p>
       </section>
 
       <section class="hidden space-y-2 rounded border p-4 lg:block" aria-labelledby="become-an-author-heading">
         <h2 class="mb-2 text-lg font-bold uppercase" id="become-an-author-heading">Become an author</h2>
 
-        <p class="text-slate-600">Do you want to contribute by writing guest posts on this blog?</p>
-        <p class="text-slate-600">Please contact us and send us a resume of previous articles that you have written.</p>
+        <p class="text-muted-foreground">Do you want to contribute by writing guest posts on this blog?</p>
+        <p class="text-muted-foreground">
+          Please contact us and send us a resume of previous articles that you have written.
+        </p>
 
         <a class={buttonVariants({ class: 'w-full' })} href="/contact">Get in touch</a>
       </section>
@@ -62,7 +64,7 @@ const [categories, authors] = await Promise.all([getCollection('categories'), ge
 
                     <div>
                       <h3 class="group-hover:underline">{author.data.name}</h3>
-                      <p class="line-clamp-2 text-sm text-slate-600">{author.data.description}</p>
+                      <p class="line-clamp-2 text-sm text-muted-foreground">{author.data.description}</p>
                     </div>
                   </a>
                 </li>

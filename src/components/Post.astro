@@ -18,7 +18,7 @@ const [categories, author] = await Promise.all([getEntries(post.data.categories)
   <div class="mb-3 flex flex-wrap items-center justify-between gap-2">
     <CategoriesList categories={categories} aria-label="Categories" />
 
-    <p class="text-sm text-slate-600">
+    <p class="text-sm text-muted-foreground">
       Published
 
       <time datetime={post.data.publishDate?.toISOString().slice(0, 10)}>
@@ -31,7 +31,7 @@ const [categories, author] = await Promise.all([getEntries(post.data.categories)
     <h3>{post.data.title}</h3>
   </a>
 
-  <p class="mb-5 text-slate-600">
+  <p class="mb-5 text-muted-foreground">
     {post.data.description}
   </p>
 
