@@ -1,0 +1,19 @@
+---
+interface Props {
+  date: Date;
+}
+
+const { date } = Astro.props;
+---
+
+<p class="text-sm text-muted-foreground">
+  <span class="sr-only">Publish date</span>
+
+  <time datetime={date.toISOString().slice(0, 10)}>
+    {
+      new Intl.DateTimeFormat('en-US', {
+        dateStyle: 'full',
+      }).format(date)
+    }
+  </time>
+</p>

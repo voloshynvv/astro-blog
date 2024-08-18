@@ -10,7 +10,7 @@ const blog = defineCollection({
       alt: z.string().optional(),
       categories: z.array(reference('categories')),
       author: reference('authors'),
-      publishDate: z.date().optional(),
+      publishDate: z.date(),
     }),
 });
 

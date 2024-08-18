@@ -5,6 +5,7 @@ import { Icon } from 'astro-icon/components';
 
 import CategoriesList from '@/components/CategoriesList.astro';
 import Avatar from '@/components/ui/Avatar.astro';
+import PublishDate from './PublishDate.astro';
 
 interface Props {
   post: CollectionEntry<'blog'>;
@@ -17,14 +18,7 @@ const [categories, author] = await Promise.all([getEntries(post.data.categories)
 <article class="border-b py-6">
   <div class="mb-3 flex flex-wrap items-center justify-between gap-2">
     <CategoriesList categories={categories} aria-label="Categories" />
-
-    <p class="text-sm text-muted-foreground">
-      Published
-
-      <time datetime={post.data.publishDate?.toISOString().slice(0, 10)}>
-        {new Intl.DateTimeFormat('en-US').format(post.data.publishDate)}
-      </time>
-    </p>
+    <PublishDate date={post.data.publishDate} />
   </div>
 
   <a href={`/blog/${post.slug}`} class="mb-2 inline-block text-2xl font-bold hover:underline">

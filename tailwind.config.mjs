@@ -6,9 +6,7 @@ export default {
     container: {
       center: true,
       padding: '1rem',
-      screens: {
-        DEFAULT: '1400px',
-      },
+      screens: ['87.5rem'],
     },
     extend: {
       colors: {
@@ -70,5 +68,5 @@ export default {
       },
     },
   },
-  plugins: [require('tailwindcss-animate')],
+  plugins: [require('tailwindcss-animate'), require('@tailwindcss/typography')],
 };
