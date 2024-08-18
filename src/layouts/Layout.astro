@@ -23,6 +23,8 @@ const { title = SITE.title, description = SITE.description } = Astro.props;
 
     <title>{title}</title>
     <meta name="description" content={description} />
+
+    <script is:inline src="/js/theme.js"></script>
   </head>
   <body class="flex min-h-svh flex-col">
     <Header />
