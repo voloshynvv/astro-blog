@@ -18,29 +18,6 @@ export const headerNavigation = [
   },
 ];
 
-export const footerNavigation = [
-  {
-    href: '/concept',
-    label: 'Concept',
-  },
-  {
-    href: '/our-story',
-    label: 'Our story',
-  },
-  {
-    href: '/blog',
-    label: 'Blog',
-  },
-  {
-    href: '/careers',
-    label: 'Careers',
-  },
-  {
-    href: '/contact',
-    label: 'Contact us',
-  },
-];
-
 export const socialMedia = [
   {
     ariaLabel: 'Github',

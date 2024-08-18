@@ -1,42 +1,26 @@
 ---
-import { footerNavigation, socialMedia } from '@/config';
+import { socialMedia } from '@/config';
 import { Icon } from 'astro-icon/components';
+import { buttonVariants } from '@/components/ui/Button';
 
 import SiteLogo from '@/components/SiteLogo.astro';
-
-const { pathname } = Astro.url;
 ---
 
-<footer class="bg-white">
-  <div class="container flex flex-col items-center justify-between gap-10 py-10 lg:flex-row">
-    <div class="lg:min-w-40">
-      <SiteLogo />
-    </div>
+<footer class="fixed bottom-0 left-0 w-full border-t bg-white bg-opacity-50 py-1 backdrop-blur-sm">
+  <div class="container flex items-center justify-between">
+    <SiteLogo />
 
-    <nav aria-label="Footer" class="flex-1">
-      <ul class="flex flex-wrap justify-center gap-4 text-center lg:gap-8">
-        {
-          footerNavigation.map((navItem) => (
-            <li>
-              <a
-                class="transition-colors hover:text-primary aria-current:text-primary"
-                href={navItem.href}
-                aria-current={pathname === navItem.href ? 'page' : null}
-              >
-                {navItem.label}
-              </a>
-            </li>
-          ))
-        }
-      </ul>
-    </nav>
-
-    <ul class="flex items-center justify-end gap-3 lg:min-w-40" aria-label="Social media">
+    <ul class="flex items-center" aria-label="Social media">
       {
         socialMedia.map((social) => (
           <li>
-            <a href={social.href} target="_blank" aria-label={`${social.ariaLabel} (opens in new tab)`}>
-              <Icon class="transition-colors hover:text-primary" name={social.icon} width={24} height={24} />
+            <a
+              href={social.href}
+              target="_blank"
+              aria-label={`${social.ariaLabel} (opens in new tab)`}
+              class={buttonVariants({ size: 'icon', variant: 'ghost' })}
+            >
+              <Icon name={social.icon} width={24} height={24} />
             </a>
           </li>
         ))

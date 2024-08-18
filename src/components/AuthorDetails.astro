@@ -12,7 +12,7 @@ const { author } = Astro.props;
 ---
 
 <article class="rounded border p-4">
-  <a href={`/author/${author.id}`} class="mb-2 flex items-center gap-2 hover:underline">
+  <a href={`/author/${author.id}`} class="mb-2 inline-flex items-center gap-2 hover:underline">
     <Avatar src={author.data.profileImage} alt="" />
     {author.data.name}
   </a>
