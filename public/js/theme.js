@@ -19,9 +19,9 @@ const theme = getTheme();
 setTheme(theme);
 
 document.addEventListener('DOMContentLoaded', () => {
-  const toggleThemeBtn = document.querySelectorAll('.toggle-theme');
+  const toggleThemeButtons = document.querySelectorAll('.toggle-theme');
 
-  toggleThemeBtn.forEach((btn) =>
+  toggleThemeButtons.forEach((btn) =>
     btn.addEventListener('click', () => {
       const theme = getTheme();
       setTheme(theme === 'dark' ? 'light' : 'dark');
