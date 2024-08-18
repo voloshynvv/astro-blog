@@ -1,0 +1,49 @@
+---
+import { Button } from '@/components/ui/Button';
+import { Icon } from 'astro-icon/components';
+---
+
+<Button variant="ghost" size="icon" className="toggle-theme" aria-label="Toggle theme">
+  <Icon
+    name="moon"
+    class="h-[1.2rem] w-[1.2rem] rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0"
+    width={20}
+    height={20}
+  />
+  <Icon
+    name="sun"
+    class="absolute h-[1.2rem] w-[1.2rem] rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100"
+    width={20}
+    height={20}
+  />
+</Button>
+
+<script>
+  const THEME_LOCAL_STORAGE_KEY = 'theme';
+  const toggleThemeBtn = document.querySelectorAll('.toggle-theme');
+
+  const getTheme = () => {
+    const theme = localStorage.getItem(THEME_LOCAL_STORAGE_KEY);
+
+    if (theme) {
+      return theme;
+    }
+
+    return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+  };
+
+  const changeTheme = (theme: string) => {
+    localStorage.setItem(THEME_LOCAL_STORAGE_KEY, theme);
+    document.documentElement.setAttribute('data-theme', theme);
+  };
+
+  const handleToggleClick = () => {
+    const theme = getTheme();
+    changeTheme(theme === 'dark' ? 'light' : 'dark');
+  };
+
+  const theme = getTheme();
+  changeTheme(theme);
+
+  toggleThemeBtn.forEach((btn) => btn.addEventListener('click', handleToggleClick));
+</script>

@@ -2,30 +2,38 @@
 import { headerNavigation } from '@/config';
 
 import SiteLogo from '@/components/SiteLogo.astro';
+import ThemeToggle from '@/components/ThemeToggle.astro';
 
 const { pathname } = Astro.url;
 ---
 
-<header class="fixed left-0 top-0 z-50 w-full border-b bg-white">
+<header class="fixed left-0 top-0 z-50 w-full border-b bg-background">
   <div class="container flex min-h-16 items-center justify-between">
     <SiteLogo />
 
-    <nav aria-label="Primary">
-      <ul class="flex items-center gap-4 text-sm">
-        {
-          headerNavigation.map((navItem) => (
-            <li>
-              <a
-                class="font-medium transition-colors aria-current:text-primary"
-                href={navItem.href}
-                aria-current={pathname === navItem.href ? 'page' : null}
-              >
-                {navItem.label}
-              </a>
-            </li>
-          ))
-        }
-      </ul>
-    </nav>
+    <div class="flex items-center gap-5">
+      <nav aria-label="Primary">
+        <ul class="flex items-center gap-4 text-sm">
+          {
+            headerNavigation.map((navItem) => (
+              <li>
+                <a
+                  class="font-medium transition-colors aria-current:text-primary"
+                  href={navItem.href}
+                  aria-current={pathname === navItem.href ? 'page' : null}
+                >
+                  {navItem.label}
+                </a>
+              </li>
+            ))
+          }
+        </ul>
+      </nav>
+
+      <div class="flex items-center gap-2">
+        <ThemeToggle />
+        <a href="">Search</a>
+      </div>
+    </div>
   </div>
 </header>
