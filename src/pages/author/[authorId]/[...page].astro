@@ -27,7 +27,9 @@ const { page, author } = Astro.props;
 ---
 
 <BlogLayout>
-  <p class="border-b border-t py-3 font-medium">{pluralize(page.total, 'blog post')} in total by {author.data.name}</p>
+  <p class="border-b border-t py-3 text-sm font-medium">
+    {pluralize(page.total, 'blog post')} in total by {author.data.name}
+  </p>
 
   {page.data.map((p) => <Post post={p} />)}
 

@@ -23,10 +23,17 @@ export const getStaticPaths = (async ({ paginate }) => {
 }) satisfies GetStaticPaths;
 
 const { page, category } = Astro.props;
+
+const { name, description } = category.data;
 ---
 
 <BlogLayout>
-  <p class="border-b border-t py-3 font-medium">{pluralize(page.total, 'post')} in total from #{category.data.name}</p>
+  <section class="rounded border border-border p-4 dark:bg-muted">
+    <h2 class="mb-2 text-xl font-bold">{name}</h2>
+    <p>{description}</p>
+  </section>
+
+  <p class="border-b py-3 text-sm font-medium">{pluralize(page.total, 'post')} in total from #{category.data.name}</p>
 
   {page.data.map((p) => <Post post={p} />)}
 
