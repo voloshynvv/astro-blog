@@ -2,6 +2,7 @@
 import { getEntries, getEntry, type CollectionEntry } from 'astro:content';
 import { buttonVariants } from '@/components/ui/Button';
 import { Icon } from 'astro-icon/components';
+import { getPostDetails } from '@/utils/blog';
 
 import CategoriesList from '@/components/CategoriesList.astro';
 import Avatar from '@/components/ui/Avatar.astro';
@@ -12,7 +13,8 @@ interface Props {
 }
 
 const { post } = Astro.props;
-const [categories, author] = await Promise.all([getEntries(post.data.categories), getEntry(post.data.author)]);
+
+const { author, categories } = await getPostDetails(post);
 ---
 
 <article class="border-b py-6">
@@ -38,7 +40,7 @@ const [categories, author] = await Promise.all([getEntries(post.data.categories)
 
     <a href={`/blog/${post.slug}`} class={buttonVariants({ variant: 'link', size: 'sm' })}>
       Read more
-      <Icon name="chevron" class="-rotate-90" />
+      <Icon name="chevron" class="-rotate-90" aria-hidden="true" />
     </a>
   </div>
 </article>

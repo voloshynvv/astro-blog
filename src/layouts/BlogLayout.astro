@@ -6,14 +6,15 @@ import Layout from '@/layouts/Layout.astro';
 import CategoriesList from '@/components/CategoriesList.astro';
 import Avatar from '@/components/ui/Avatar.astro';
 
-const [categories, authors] = await Promise.all([getCollection('categories'), getCollection('authors')]);
+const categories = await getCollection('categories');
+const authors = await getCollection('authors');
 ---
 
 <Layout>
   <div class="container grid gap-12 py-4 lg:grid-cols-[1fr_2fr_1fr]">
     <div class="left-0 top-20 h-fit space-y-6 lg:sticky">
-      <section class="rounded border p-4">
-        <h1 class="mb-2 text-lg font-bold uppercase">Blog</h1>
+      <section class="rounded lg:border lg:p-4">
+        <h1 class="mb-2 text-2xl font-bold uppercase lg:text-lg">Blog</h1>
         <p class="text-muted-foreground">Posts, articles, and tutorials about web development.</p>
       </section>
 

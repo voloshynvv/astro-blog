@@ -1,9 +1,13 @@
 ---
-import CategoriesList from '@/components/CategoriesList.astro';
-import Layout from '@/layouts/Layout.astro';
-import { getEntry } from 'astro:content';
-import { getEntries } from 'astro:content';
+import { buttonVariants } from '@/components/ui/Button';
+import { Icon } from 'astro-icon/components';
 import { getCollection } from 'astro:content';
+import { getPostDetails } from '@/utils/blog';
+import { cn } from '@/utils/mergeClasses';
+
+import Layout from '@/layouts/Layout.astro';
+import CategoriesList from '@/components/CategoriesList.astro';
+import PublishDate from '@/components/PublishDate.astro';
 
 export const getStaticPaths = async () => {
   const posts = await getCollection('blog');
@@ -16,21 +20,47 @@ export const getStaticPaths = async () => {
 
 const { post } = Astro.props;
 const { Content } = await post.render();
-const categories = await getEntries(post.data.categories);
-const author = await getEntry(post.data.author);
+
+const { author, categories } = await getPostDetails(post);
 ---
 
 <Layout>
-  <article class="py-20">
+  <div class="container py-4">
+    <button onclick="history.go(-1)" class={buttonVariants({ variant: 'outline' })}>
+      <Icon name="chevron" aria-hidden="true" class="rotate-90" />
+      Go back
+    </button>
+  </div>
+
+  <article class="pb-4">
     <div class="container max-w-3xl">
-      <header>
-        <p>Published</p>
-        <h1 class="mb-2 text-2xl font-bold">{post.data.title}</h1>
-        <CategoriesList categories={categories} />
-        <a href="#"></a>
+      <header class="space-y-4">
+        <PublishDate date={post.data.publishDate} />
+
+        <h1 class="mb-6 text-3xl font-bold">{post.data.title}</h1>
+
+        <CategoriesList categories={categories} aria-label="Categories" />
+
+        <p class="text-muted-foreground">
+          Published by
+
+          <a
+            href={`/author/${author.id}`}
+            class={cn(
+              buttonVariants({
+                variant: 'link',
+                class: 'text-foreground italic underline hover:no-underline p-0 h-auto',
+              })
+            )}
+          >
+            {author.data.name}
+          </a>
+        </p>
       </header>
 
-      <div class="prose">
+      <div
+        class="prose mt-20 max-w-none text-muted-foreground prose-headings:text-foreground prose-a:text-primary hover:prose-a:no-underline"
+      >
         <Content />
       </div>
     </div>
