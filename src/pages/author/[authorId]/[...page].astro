@@ -2,6 +2,7 @@
 import type { GetStaticPaths } from 'astro';
 import { getCollection } from 'astro:content';
 import { pluralize } from '@/utils/pluralize';
+import { getPosts } from '@/utils/blog';
 
 import BlogLayout from '@/layouts/BlogLayout.astro';
 import Post from '@/components/Post.astro';
@@ -9,7 +10,7 @@ import AuthorDetails from '@/components/AuthorDetails.astro';
 
 export const getStaticPaths = (async ({ paginate }) => {
   const authors = await getCollection('authors');
-  const posts = await getCollection('blog');
+  const posts = await getPosts();
 
   return authors.flatMap((author) => {
     const filteredPosts = posts.filter((post) => post.data.author.id === author.id);
@@ -17,7 +18,7 @@ export const getStaticPaths = (async ({ paginate }) => {
     return paginate(filteredPosts, {
       params: { authorId: author.id },
       props: { author },
-      pageSize: 1,
+      pageSize: 10,
     });
   });
 }) satisfies GetStaticPaths;

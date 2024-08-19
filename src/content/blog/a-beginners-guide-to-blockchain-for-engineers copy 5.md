@@ -4,6 +4,6 @@ description: A concise introduction to blockchain technology, designed specifica
 categories:
   - a11y
 author: emily-johnson
-publishDate: 2024-08-16
+publishDate: 2023-10-16
 # image: './images/a-beginners-guide-to-blockchain-for-engineers.jpg'
 ---

@@ -5,9 +5,10 @@ import { pluralize } from '@/utils/pluralize';
 
 import BlogLayout from '@/layouts/BlogLayout.astro';
 import Post from '@/components/Post.astro';
+import { getPosts } from '@/utils/blog';
 
 export const getStaticPaths = (async ({ paginate }) => {
-  const posts = await getCollection('blog');
+  const posts = await getPosts();
 
   return paginate(posts, { pageSize: 10 });
 }) satisfies GetStaticPaths;

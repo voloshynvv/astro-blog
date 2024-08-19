@@ -4,6 +4,6 @@ description: A concise introduction to blockchain technology, designed specifica
 categories:
   - react
 author: james-carter
-publishDate: 2024-08-16
+publishDate: 2023-08-12
 # image: './images/a-beginners-guide-to-blockchain-for-engineers.jpg'
 ---

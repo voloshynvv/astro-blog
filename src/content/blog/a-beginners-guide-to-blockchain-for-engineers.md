@@ -4,6 +4,6 @@ description: A concise introduction to blockchain technology, designed specifica
 categories:
   - astro
 author: michael-lee
-publishDate: 2024-08-16
+publishDate: 2024-04-05
 # image: './images/a-beginners-guide-to-blockchain-for-engineers.jpg'
 ---

@@ -5,6 +5,6 @@ categories:
   - react
   - next.js
 author: emily-johnson
-publishDate: 2024-08-16
+publishDate: 2022-08-01
 # image: './images/a-beginners-guide-to-blockchain-for-engineers.jpg'
 ---

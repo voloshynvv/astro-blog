@@ -2,13 +2,14 @@
 import type { GetStaticPaths } from 'astro';
 import { getCollection } from 'astro:content';
 import { pluralize } from '@/utils/pluralize';
+import { getPosts } from '@/utils/blog';
 
 import BlogLayout from '@/layouts/BlogLayout.astro';
 import Post from '@/components/Post.astro';
 
 export const getStaticPaths = (async ({ paginate }) => {
   const categories = await getCollection('categories');
-  const posts = await getCollection('blog');
+  const posts = await getPosts();
 
   return categories.flatMap((category) => {
     const filteredPosts = posts.filter((post) => post.data.categories.some((postCat) => postCat.id === category.id));
