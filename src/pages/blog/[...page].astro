@@ -1,11 +1,10 @@
 ---
 import type { GetStaticPaths } from 'astro';
-import { getCollection } from 'astro:content';
 import { pluralize } from '@/utils/pluralize';
+import { getPosts } from '@/utils/blog';
 
 import BlogLayout from '@/layouts/BlogLayout.astro';
-import Post from '@/components/Post.astro';
-import { getPosts } from '@/utils/blog';
+import { Post } from '@/components/Post';
 
 export const getStaticPaths = (async ({ paginate }) => {
   const posts = await getPosts();
@@ -19,8 +18,9 @@ const { page } = Astro.props;
 <BlogLayout>
   <p class="border-b border-t py-3 text-sm font-medium">{pluralize(page.total, 'post')} in total</p>
 
-  {page.data.map((p) => <Post post={p} />)}
+  {page.data.map((post) => <Post post={post} />)}
 
+  <!-- TODO: PAGINATION -->
   <div class="flex">
     {page.url.prev ? <a href={page.url.prev}>Previous</a> : null}
     {page.url.next ? <a href={page.url.next}>Next</a> : null}

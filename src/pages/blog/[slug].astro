@@ -1,16 +1,15 @@
 ---
-import { buttonVariants } from '@/components/ui/Button';
 import { Icon } from 'astro-icon/components';
-import { getCollection } from 'astro:content';
-import { getPostDetails } from '@/utils/blog';
+import { buttonVariants } from '@/components/ui/Button';
+import { getPostDetails, getPosts } from '@/utils/blog';
 import { cn } from '@/utils/mergeClasses';
 
 import Layout from '@/layouts/Layout.astro';
-import CategoriesList from '@/components/CategoriesList.astro';
-import PublishDate from '@/components/PublishDate.astro';
+import { CategoriesList } from '@/components/CategoriesList';
+import { PublishDate } from '@/components/PublishDate';
 
 export const getStaticPaths = async () => {
-  const posts = await getCollection('blog');
+  const posts = await getPosts();
 
   return posts.map((post) => ({
     params: { slug: post.slug },
@@ -21,7 +20,8 @@ export const getStaticPaths = async () => {
 const { post } = Astro.props;
 const { Content } = await post.render();
 
-const { author, categories } = await getPostDetails(post);
+const { publishDate, title } = post.data;
+const { author, categories } = post.referenceData;
 ---
 
 <Layout>
@@ -35,9 +35,9 @@ const { author, categories } = await getPostDetails(post);
   <article class="pb-4">
     <div class="container max-w-3xl">
       <header class="space-y-4">
-        <PublishDate date={post.data.publishDate} />
+        <PublishDate date={publishDate} />
 
-        <h1 class="mb-6 text-3xl font-bold">{post.data.title}</h1>
+        <h1 class="mb-6 text-3xl font-bold">{title}</h1>
 
         <CategoriesList categories={categories} aria-label="Categories" />
 

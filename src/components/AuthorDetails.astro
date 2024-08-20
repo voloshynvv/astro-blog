@@ -2,7 +2,7 @@
 import type { CollectionEntry } from 'astro:content';
 import { Icon } from 'astro-icon/components';
 
-import Avatar from '@/components/ui/Avatar.astro';
+import { Avatar } from '@/components/ui/Avatar';
 
 interface Props {
   author: CollectionEntry<'authors'>;
@@ -13,7 +13,7 @@ const { author } = Astro.props;
 
 <article class="rounded border p-4">
   <a href={`/author/${author.id}`} class="mb-2 inline-flex items-center gap-2 hover:underline">
-    <Avatar src={author.data.profileImage} alt="" />
+    <Avatar avatar={author.data.profileImage} alt="" />
     {author.data.name}
   </a>
 

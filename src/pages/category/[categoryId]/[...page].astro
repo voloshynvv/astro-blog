@@ -5,7 +5,7 @@ import { pluralize } from '@/utils/pluralize';
 import { getPosts } from '@/utils/blog';
 
 import BlogLayout from '@/layouts/BlogLayout.astro';
-import Post from '@/components/Post.astro';
+import { Post } from '@/components/Post';
 
 export const getStaticPaths = (async ({ paginate }) => {
   const categories = await getCollection('categories');
@@ -35,8 +35,9 @@ const { name, description } = category.data;
 
   <p class="border-b py-3 text-sm font-medium">{pluralize(page.total, 'post')} in total from #{category.data.name}</p>
 
-  {page.data.map((p) => <Post post={p} />)}
+  {page.data.map((post) => <Post post={post} />)}
 
+  <!-- TODO: PAGINATION -->
   <div class="flex">
     {page.url.prev ? <a href={page.url.prev}>Previous</a> : null}
     {page.url.next ? <a href={page.url.next}>Next</a> : null}
