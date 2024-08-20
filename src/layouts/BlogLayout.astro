@@ -1,10 +1,10 @@
 ---
 import { getCollection } from 'astro:content';
-import { buttonVariants } from '@/components/ui/Button';
 
 import Layout from '@/layouts/Layout.astro';
-import CategoriesList from '@/components/CategoriesList.astro';
-import Avatar from '@/components/ui/Avatar.astro';
+import { Button } from '@/components/ui/Button';
+import { Avatar } from '@/components/ui/Avatar';
+import { CategoriesList } from '@/components/CategoriesList';
 
 const categories = await getCollection('categories');
 const authors = await getCollection('authors');
@@ -26,7 +26,7 @@ const authors = await getCollection('authors');
           Please contact us and send us a resume of previous articles that you have written.
         </p>
 
-        <a class={buttonVariants({ class: 'w-full' })} href="/contact">Get in touch</a>
+        <Button disabled className="w-full">Get in touch</Button>
       </section>
     </div>
 
@@ -61,7 +61,7 @@ const authors = await getCollection('authors');
               {authors.map((author) => (
                 <li>
                   <a href={`/author/${author.id}`} class="group flex gap-2">
-                    <Avatar src={author.data.profileImage} alt="" />
+                    <Avatar avatar={author.data.profileImage} alt="" />
 
                     <div>
                       <h3 class="group-hover:underline">{author.data.name}</h3>

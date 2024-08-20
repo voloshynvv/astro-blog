@@ -12,10 +12,6 @@ export const headerNavigation = [
     href: '/blog',
     label: 'Blog',
   },
-  {
-    href: '/contact',
-    label: 'Contact',
-  },
 ];
 
 export const socialMedia = [

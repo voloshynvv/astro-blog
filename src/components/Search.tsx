@@ -1,12 +1,15 @@
-import type { CollectionEntry } from 'astro:content';
-import Fuse from 'fuse.js';
+import Fuse, { type FuseResult } from 'fuse.js';
 import { useEffect, useMemo, useState } from 'react';
 
+import { Post } from '@/components/Post';
+
+import type { PostEntry } from '@/types/PostEntry';
+import { pluralize } from '@/utils/pluralize';
+
 type Status = 'idle' | 'pending' | 'error' | 'succeeded';
-type Post = CollectionEntry<'blog'>;
 
 interface SearchResponse {
-  posts: Post[];
+  posts: PostEntry[];
 }
 
 const fuseOptions = {
@@ -17,7 +20,7 @@ const fuseOptions = {
 
 const Search = () => {
   const [status, setStatus] = useState<Status>('idle');
-  const [posts, setPosts] = useState<Post[]>([]);
+  const [posts, setPosts] = useState<PostEntry[]>([]);
   const [query, setQuery] = useState('');
 
   useEffect(() => {
@@ -44,7 +47,7 @@ const Search = () => {
   }, []);
 
   const fuse = useMemo(() => new Fuse(posts, fuseOptions), [posts]);
-  const searchResults = fuse.search(query);
+  const searchResult = fuse.search(query);
 
   return (
     <>
@@ -55,23 +58,43 @@ const Search = () => {
 
         <input
           onChange={(e) => setQuery(e.target.value)}
-          className="w-full rounded-sm border border-input bg-transparent px-5 py-2 text-foreground ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
+          className="w-full rounded-sm border border-input bg-transparent px-5 py-2 text-foreground placeholder-inherit ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
           type="search"
           id="search"
           placeholder="e.g. News about Astro."
         />
 
-        <section>
+        <section className="mt-6">
           <h2 className="sr-only">Search results</h2>
 
-          <ul>
-            {searchResults.map(({ item }) => (
-              <li key={item.id}>{item.data.title}</li>
-            ))}
-          </ul>
+          {status === 'error' && (
+            <p>
+              Something went wrong. Try again later. <span role="img">😞</span>
+            </p>
+          )}
+
+          {query && !searchResult.length && (
+            <p>
+              Nothing found <span role="img">😞</span>
+            </p>
+          )}
+
+          {query && searchResult.length > 0 && <SearchResultView searchResult={searchResult} />}
         </section>
       </search>
     </>
+  );
+};
+
+const SearchResultView = ({ searchResult }: { searchResult: FuseResult<PostEntry>[] }) => {
+  return (
+    <div>
+      <p>Found {pluralize(searchResult.length, 'post')}</p>
+
+      {searchResult.map((post) => (
+        <Post key={post.item.id} post={post.item} />
+      ))}
+    </div>
   );
 };
 

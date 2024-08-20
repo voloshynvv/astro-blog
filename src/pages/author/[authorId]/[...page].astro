@@ -5,8 +5,8 @@ import { pluralize } from '@/utils/pluralize';
 import { getPosts } from '@/utils/blog';
 
 import BlogLayout from '@/layouts/BlogLayout.astro';
-import Post from '@/components/Post.astro';
 import AuthorDetails from '@/components/AuthorDetails.astro';
+import { Post } from '@/components/Post';
 
 export const getStaticPaths = (async ({ paginate }) => {
   const authors = await getCollection('authors');
@@ -31,8 +31,9 @@ const { page, author } = Astro.props;
     {pluralize(page.total, 'blog post')} in total by {author.data.name}
   </p>
 
-  {page.data.map((p) => <Post post={p} />)}
+  {page.data.map((post) => <Post post={post} />)}
 
+  <!-- TODO: PAGINATION -->
   <div class="flex">
     {page.url.prev ? <a href={page.url.prev}>Previous</a> : null}
     {page.url.next ? <a href={page.url.next}>Next</a> : null}
